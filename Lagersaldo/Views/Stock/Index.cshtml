@@ -1,0 +1,40 @@
+﻿@model Lagersaldo.Models.ViewModels.ProductsInStockViewModel
+
+<div>
+    <table>
+        <tbody>
+            <tr><td>Lagersaldo</td></tr>
+            <tr>
+                <td>
+                    <b>Artikel</b>
+                </td>
+                <td>
+                    <b>Hylla</b>
+                </td>
+                <td>
+                    <b>Tillgängliga</b>
+                </td>
+            </tr>
+            @foreach (var p in Model.availableProducts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => p.ProductNr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => p.ShelfID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => p.Quantity)
+                    </td>
+                </tr>
+            }
+            @*Eventuellt visa totalen med summa av alla artiklar?*@
+        </tbody>
+    </table>
+    @using (Html.BeginForm("Index", "Stock", FormMethod.Post))
+    {
+        @Html.TextBoxFor(m => m.ProductNr)
+        <input type="submit" value="Submit" />
+    }
+</div>
